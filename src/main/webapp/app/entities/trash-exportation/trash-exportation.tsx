@@ -67,7 +67,7 @@ export const TrashExportation = (props: RouteComponentProps<{ url: string }>) =>
                   </td>
                   <td>{trashExportation.trash_type}</td>
                   <td>{trashExportation.is_wash ? 'true' : 'false'}</td>
-                  <td>{trashExportation.osbb ? <Link to={`osbb/${trashExportation.osbb.id}`}>{trashExportation.osbb.name}</Link> : ''}</td>
+                  <td>{trashExportation.osbb ? <Link to={`osbb/${trashExportation.osbb.id}`}>{trashExportation.osbb.id}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${trashExportation.id}`} color="info" size="sm" data-cy="entityDetailsButton">

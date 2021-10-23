@@ -44,7 +44,7 @@ export const TrashExportationDetail = (props: RouteComponentProps<{ id: string }
           </dt>
           <dd>{trashExportationEntity.is_wash ? 'true' : 'false'}</dd>
           <dt>Osbb</dt>
-          <dd>{trashExportationEntity.osbb ? trashExportationEntity.osbb.name : ''}</dd>
+          <dd>{trashExportationEntity.osbb ? trashExportationEntity.osbb.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/trash-exportation" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

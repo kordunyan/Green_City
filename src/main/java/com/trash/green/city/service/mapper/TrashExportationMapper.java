@@ -9,7 +9,7 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { OsbbMapper.class })
 public interface TrashExportationMapper extends EntityMapper<TrashExportationDTO, TrashExportation> {
-    @Mapping(target = "osbb", source = "osbb", qualifiedByName = "name")
+    @Mapping(target = "osbb", source = "osbb", qualifiedByName = "id")
     TrashExportationDTO toDto(TrashExportation s);
 
     @Named("id")

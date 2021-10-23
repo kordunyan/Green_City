@@ -19,15 +19,6 @@
   ],
   "relationships": [
     {
-      "relationshipName": "osbb",
-      "otherEntityName": "osbb",
-      "relationshipType": "one-to-one",
-      "otherEntityField": "name",
-      "ownerSide": true,
-      "id": false,
-      "otherEntityRelationshipName": "trashExportation"
-    },
-    {
       "relationshipName": "fullTrashImages",
       "otherEntityName": "fullTrashImages",
       "relationshipType": "one-to-many",
@@ -38,6 +29,12 @@
       "otherEntityName": "emptyTrashImages",
       "relationshipType": "one-to-many",
       "otherEntityRelationshipName": "trashExportation"
+    },
+    {
+      "relationshipName": "osbb",
+      "otherEntityName": "osbb",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id"
     }
   ],
   "service": "serviceClass",
