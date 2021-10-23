@@ -23,9 +23,6 @@
             <column name="trash_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="action" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
             <column name="is_wash" type="boolean">
                 <constraints nullable="true" />
             </column>
@@ -57,7 +54,6 @@
             <column name="weight" type="numeric"/>
             <column name="date" type="date"/>
             <column name="trash_type" type="string"/>
-            <column name="action" type="string"/>
             <column name="is_wash" type="boolean"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>

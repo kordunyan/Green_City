@@ -8,7 +8,6 @@ export interface ITrashExportation {
   weight?: number | null;
   date?: string | null;
   trash_type?: string | null;
-  action?: string | null;
   is_wash?: boolean | null;
   osbb?: IOsbb | null;
   fullTrashImages?: IFullTrashImages[] | null;

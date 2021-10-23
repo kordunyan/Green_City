@@ -45,9 +45,6 @@ class TrashExportationResourceIT {
     private static final String DEFAULT_TRASH_TYPE = "AAAAAAAAAA";
     private static final String UPDATED_TRASH_TYPE = "BBBBBBBBBB";
 
-    private static final String DEFAULT_ACTION = "AAAAAAAAAA";
-    private static final String UPDATED_ACTION = "BBBBBBBBBB";
-
     private static final Boolean DEFAULT_IS_WASH = false;
     private static final Boolean UPDATED_IS_WASH = true;
 
@@ -82,7 +79,6 @@ class TrashExportationResourceIT {
             .weight(DEFAULT_WEIGHT)
             .date(DEFAULT_DATE)
             .trash_type(DEFAULT_TRASH_TYPE)
-            .action(DEFAULT_ACTION)
             .is_wash(DEFAULT_IS_WASH);
         return trashExportation;
     }
@@ -98,7 +94,6 @@ class TrashExportationResourceIT {
             .weight(UPDATED_WEIGHT)
             .date(UPDATED_DATE)
             .trash_type(UPDATED_TRASH_TYPE)
-            .action(UPDATED_ACTION)
             .is_wash(UPDATED_IS_WASH);
         return trashExportation;
     }
@@ -127,7 +122,6 @@ class TrashExportationResourceIT {
         assertThat(testTrashExportation.getWeight()).isEqualTo(DEFAULT_WEIGHT);
         assertThat(testTrashExportation.getDate()).isEqualTo(DEFAULT_DATE);
         assertThat(testTrashExportation.getTrash_type()).isEqualTo(DEFAULT_TRASH_TYPE);
-        assertThat(testTrashExportation.getAction()).isEqualTo(DEFAULT_ACTION);
         assertThat(testTrashExportation.getIs_wash()).isEqualTo(DEFAULT_IS_WASH);
     }
 
@@ -167,7 +161,6 @@ class TrashExportationResourceIT {
             .andExpect(jsonPath("$.[*].weight").value(hasItem(DEFAULT_WEIGHT)))
             .andExpect(jsonPath("$.[*].date").value(hasItem(sameInstant(DEFAULT_DATE))))
             .andExpect(jsonPath("$.[*].trash_type").value(hasItem(DEFAULT_TRASH_TYPE)))
-            .andExpect(jsonPath("$.[*].action").value(hasItem(DEFAULT_ACTION)))
             .andExpect(jsonPath("$.[*].is_wash").value(hasItem(DEFAULT_IS_WASH.booleanValue())));
     }
 
@@ -186,7 +179,6 @@ class TrashExportationResourceIT {
             .andExpect(jsonPath("$.weight").value(DEFAULT_WEIGHT))
             .andExpect(jsonPath("$.date").value(sameInstant(DEFAULT_DATE)))
             .andExpect(jsonPath("$.trash_type").value(DEFAULT_TRASH_TYPE))
-            .andExpect(jsonPath("$.action").value(DEFAULT_ACTION))
             .andExpect(jsonPath("$.is_wash").value(DEFAULT_IS_WASH.booleanValue()));
     }
 
@@ -209,12 +201,7 @@ class TrashExportationResourceIT {
         TrashExportation updatedTrashExportation = trashExportationRepository.findById(trashExportation.getId()).get();
         // Disconnect from session so that the updates on updatedTrashExportation are not directly saved in db
         em.detach(updatedTrashExportation);
-        updatedTrashExportation
-            .weight(UPDATED_WEIGHT)
-            .date(UPDATED_DATE)
-            .trash_type(UPDATED_TRASH_TYPE)
-            .action(UPDATED_ACTION)
-            .is_wash(UPDATED_IS_WASH);
+        updatedTrashExportation.weight(UPDATED_WEIGHT).date(UPDATED_DATE).trash_type(UPDATED_TRASH_TYPE).is_wash(UPDATED_IS_WASH);
         TrashExportationDTO trashExportationDTO = trashExportationMapper.toDto(updatedTrashExportation);
 
         restTrashExportationMockMvc
@@ -232,7 +219,6 @@ class TrashExportationResourceIT {
         assertThat(testTrashExportation.getWeight()).isEqualTo(UPDATED_WEIGHT);
         assertThat(testTrashExportation.getDate()).isEqualTo(UPDATED_DATE);
         assertThat(testTrashExportation.getTrash_type()).isEqualTo(UPDATED_TRASH_TYPE);
-        assertThat(testTrashExportation.getAction()).isEqualTo(UPDATED_ACTION);
         assertThat(testTrashExportation.getIs_wash()).isEqualTo(UPDATED_IS_WASH);
     }
 
@@ -332,7 +318,6 @@ class TrashExportationResourceIT {
         assertThat(testTrashExportation.getWeight()).isEqualTo(UPDATED_WEIGHT);
         assertThat(testTrashExportation.getDate()).isEqualTo(DEFAULT_DATE);
         assertThat(testTrashExportation.getTrash_type()).isEqualTo(DEFAULT_TRASH_TYPE);
-        assertThat(testTrashExportation.getAction()).isEqualTo(DEFAULT_ACTION);
         assertThat(testTrashExportation.getIs_wash()).isEqualTo(DEFAULT_IS_WASH);
     }
 
@@ -348,12 +333,7 @@ class TrashExportationResourceIT {
         TrashExportation partialUpdatedTrashExportation = new TrashExportation();
         partialUpdatedTrashExportation.setId(trashExportation.getId());
 
-        partialUpdatedTrashExportation
-            .weight(UPDATED_WEIGHT)
-            .date(UPDATED_DATE)
-            .trash_type(UPDATED_TRASH_TYPE)
-            .action(UPDATED_ACTION)
-            .is_wash(UPDATED_IS_WASH);
+        partialUpdatedTrashExportation.weight(UPDATED_WEIGHT).date(UPDATED_DATE).trash_type(UPDATED_TRASH_TYPE).is_wash(UPDATED_IS_WASH);
 
         restTrashExportationMockMvc
             .perform(
@@ -370,7 +350,6 @@ class TrashExportationResourceIT {
         assertThat(testTrashExportation.getWeight()).isEqualTo(UPDATED_WEIGHT);
         assertThat(testTrashExportation.getDate()).isEqualTo(UPDATED_DATE);
         assertThat(testTrashExportation.getTrash_type()).isEqualTo(UPDATED_TRASH_TYPE);
-        assertThat(testTrashExportation.getAction()).isEqualTo(UPDATED_ACTION);
         assertThat(testTrashExportation.getIs_wash()).isEqualTo(UPDATED_IS_WASH);
     }
 

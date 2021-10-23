@@ -1,9 +1,13 @@
 package com.trash.green.city.service;
 
+import com.trash.green.city.constants.ConvertationRate;
 import com.trash.green.city.domain.TrashExportation;
 import com.trash.green.city.repository.TrashExportationRepository;
+import com.trash.green.city.service.dto.OsbbDTO;
 import com.trash.green.city.service.dto.TrashExportationDTO;
+import com.trash.green.city.service.exportation.ExportTrashDto;
 import com.trash.green.city.service.mapper.TrashExportationMapper;
+import java.time.ZonedDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -25,10 +29,40 @@ public class TrashExportationService {
     private final TrashExportationRepository trashExportationRepository;
 
     private final TrashExportationMapper trashExportationMapper;
+    private final OsbbService osbbService;
 
-    public TrashExportationService(TrashExportationRepository trashExportationRepository, TrashExportationMapper trashExportationMapper) {
+    public TrashExportationService(
+        TrashExportationRepository trashExportationRepository,
+        TrashExportationMapper trashExportationMapper,
+        OsbbService osbbService
+    ) {
         this.trashExportationRepository = trashExportationRepository;
         this.trashExportationMapper = trashExportationMapper;
+        this.osbbService = osbbService;
+    }
+
+    public void exportTrash(ExportTrashDto dto) {
+        TrashExportationDTO exportationDTO = new TrashExportationDTO();
+        exportationDTO.setWeight(calculateWeight(dto.getContainerCount(), dto.getTrashType()));
+        exportationDTO.setTrash_type(dto.getTrashType());
+        exportationDTO.setDate(ZonedDateTime.now());
+        exportationDTO.setIs_wash(dto.getWash());
+
+        Optional<OsbbDTO> optionalOsbbDTO = osbbService.findOne(dto.getOsbbId());
+
+        if (!optionalOsbbDTO.isPresent()) {
+            throw new IllegalStateException(String.format("Osbb with id %s npt found", dto.getOsbbId()));
+        }
+        exportationDTO.setOsbb(optionalOsbbDTO.get());
+
+        TrashExportation trashExportation = trashExportationMapper.toEntity(exportationDTO);
+
+        trashExportation.getEmptyTrashImages();
+    }
+
+    public Integer calculateWeight(Integer containerCount, String trashType) {
+        ConvertationRate convertationRate = ConvertationRate.getByType(trashType);
+        return convertationRate.getRate() * containerCount;
     }
 
     /**

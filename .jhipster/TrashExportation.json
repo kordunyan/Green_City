@@ -13,10 +13,6 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "action",
-      "fieldType": "String"
-    },
-    {
       "fieldName": "is_wash",
       "fieldType": "Boolean"
     }

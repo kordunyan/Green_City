@@ -1,11 +1,11 @@
-id;weight;date;trash_type;action;is_wash
-1;14519;2021-10-22T14:21:25;Sheqel;workforce;false
-2;45371;2021-10-23T07:34:15;Shoes Grocery Ghana;Personal;true
-3;23821;2021-10-22T14:32:54;Avon;Jamaica up;false
-4;57746;2021-10-22T20:46:23;payment Investment;Towels architect Refined;false
-5;64918;2021-10-23T03:12:13;Utah Michigan Games;HTTP Facilitator Chips;false
-6;36787;2021-10-22T11:58:07;neural Cameroon;Associate;false
-7;83627;2021-10-22T20:38:32;calculate connecting;Rubber bifurcated Wooden;true
-8;1663;2021-10-23T10:10:05;Republic portals JBOD;port Planner Organic;false
-9;87893;2021-10-23T05:56:27;Pizza;National;false
-10;91534;2021-10-23T02:43:40;bus;port;false
+id;weight;date;trash_type;is_wash
+1;14519;2021-10-22T14:21:25;Sheqel;false
+2;31418;2021-10-22T11:16:32;hub HTTP;true
+3;47974;2021-10-22T13:22:27;communities;false
+4;37412;2021-10-23T09:27:58;Functionality Synchronised;false
+5;12127;2021-10-23T02:37:08;Jamaica up;false
+6;57746;2021-10-22T20:46:23;payment Investment;true
+7;14887;2021-10-22T22:04:12;architect Refined olive;true
+8;58340;2021-10-22T14:23:54;Michigan Games program;false
+9;97760;2021-10-22T14:15:14;Chips Tools;false
+10;79103;2021-10-22T15:15:19;Cameroon Industrial compressing;true

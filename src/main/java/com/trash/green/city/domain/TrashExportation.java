@@ -31,9 +31,6 @@ public class TrashExportation implements Serializable {
     @Column(name = "trash_type")
     private String trash_type;
 
-    @Column(name = "action")
-    private String action;
-
     @Column(name = "is_wash")
     private Boolean is_wash;
 
@@ -102,19 +99,6 @@ public class TrashExportation implements Serializable {
 
     public void setTrash_type(String trash_type) {
         this.trash_type = trash_type;
-    }
-
-    public String getAction() {
-        return this.action;
-    }
-
-    public TrashExportation action(String action) {
-        this.setAction(action);
-        return this;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
     }
 
     public Boolean getIs_wash() {
@@ -232,7 +216,6 @@ public class TrashExportation implements Serializable {
             ", weight=" + getWeight() +
             ", date='" + getDate() + "'" +
             ", trash_type='" + getTrash_type() + "'" +
-            ", action='" + getAction() + "'" +
             ", is_wash='" + getIs_wash() + "'" +
             "}";
     }

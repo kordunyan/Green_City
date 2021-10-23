@@ -17,8 +17,6 @@ public class TrashExportationDTO implements Serializable {
 
     private String trash_type;
 
-    private String action;
-
     private Boolean is_wash;
 
     private OsbbDTO osbb;
@@ -53,14 +51,6 @@ public class TrashExportationDTO implements Serializable {
 
     public void setTrash_type(String trash_type) {
         this.trash_type = trash_type;
-    }
-
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
     }
 
     public Boolean getIs_wash() {
@@ -108,7 +98,6 @@ public class TrashExportationDTO implements Serializable {
             ", weight=" + getWeight() +
             ", date='" + getDate() + "'" +
             ", trash_type='" + getTrash_type() + "'" +
-            ", action='" + getAction() + "'" +
             ", is_wash='" + getIs_wash() + "'" +
             ", osbb=" + getOsbb() +
             "}";

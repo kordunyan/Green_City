@@ -3,6 +3,7 @@ package com.trash.green.city.web.rest;
 import com.trash.green.city.repository.TrashExportationRepository;
 import com.trash.green.city.service.TrashExportationService;
 import com.trash.green.city.service.dto.TrashExportationDTO;
+import com.trash.green.city.service.exportation.ExportTrashDto;
 import com.trash.green.city.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
@@ -41,6 +43,28 @@ public class TrashExportationResource {
     ) {
         this.trashExportationService = trashExportationService;
         this.trashExportationRepository = trashExportationRepository;
+    }
+
+    @PostMapping("/export-trash")
+    public ResponseEntity<String> exportTrash(
+        @RequestParam(name = "emptyTrashImages") List<MultipartFile> emptyTrashImages,
+        @RequestParam(name = "fullTrashImages") List<MultipartFile> fullTrashImages,
+        @RequestParam(name = "containerCount") Integer containerCount,
+        @RequestParam(name = "trashType") String trashType,
+        @RequestParam(name = "isWash") Boolean isWash,
+        @RequestParam(name = "osbbId") Long osbbId
+    ) {
+        ExportTrashDto dto = new ExportTrashDto();
+        dto.setEmptyTrashImages(emptyTrashImages);
+        dto.setFullTrashImages(fullTrashImages);
+        dto.setContainerCount(containerCount);
+        dto.setTrashType(trashType);
+        dto.setOsbbId(osbbId);
+        dto.setWash(isWash);
+
+        trashExportationService.exportTrash(dto);
+
+        return ResponseEntity.ok("succesfully exported");
     }
 
     /**
