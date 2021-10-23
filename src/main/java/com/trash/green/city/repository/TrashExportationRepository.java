@@ -1,6 +1,7 @@
 package com.trash.green.city.repository;
 
 import com.trash.green.city.domain.TrashExportation;
+import com.trash.green.city.domain.TrashExportationReport;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -17,19 +18,14 @@ import org.springframework.stereotype.Repository;
 public interface TrashExportationRepository extends JpaRepository<TrashExportation, Long> {
     List<TrashExportation> findAllByOsbbId(Long id);
 
-    @Query(
-        value = "SELECT t, o.name FROM trash_exportation t " +
-        "JOIN osbb o on o.id = t.osbb_id" +
-        " WHERE  t.createdDate < greaterThan AND t.createdDate > lessThen GROUP BY t.osbb_id",
-        nativeQuery = true
-    )
-    List<TrashExportation> findAllByDuration(String lessThen, String greaterThan);
+    List<TrashExportation> findAllByOsbbIdOrderByDateDesc(Long id);
 
     @Query(
-        value = "SELECT t, o.name FROM trash_exportation t " +
-        "JOIN osbb o on o.id = t.osbb_id" +
-        " WHERE  t.createdDate < greaterThan AND t.createdDate > lessThen AND t.osbb_id = id",
-        nativeQuery = true
+        nativeQuery = true,
+        value = "SELECT SUM(t.weight) as weight,  o.name as name, o.address as address, t.trash_type as trash_type  FROM trash_exportation t " +
+        "JOIN osbb o ON o.id = t.osbb_id " +
+        "GROUP BY o.name, o.address , t.trash_type"
     )
-    List<TrashExportation> findAllByDurationAndOsbbId(String lessThen, String greaterThan, int id);
+    @SuppressWarnings("unchecked")
+    List<Object[]> findAllGr();
 }
