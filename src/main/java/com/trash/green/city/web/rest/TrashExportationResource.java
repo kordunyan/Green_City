@@ -1,12 +1,15 @@
 package com.trash.green.city.web.rest;
 
 import com.trash.green.city.repository.TrashExportationRepository;
+import com.trash.green.city.service.OsbbService;
 import com.trash.green.city.service.TrashExportationService;
+import com.trash.green.city.service.dto.OsbbDTO;
 import com.trash.green.city.service.dto.TrashExportationDTO;
 import com.trash.green.city.service.exportation.ExportTrashDto;
 import com.trash.green.city.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -34,35 +37,47 @@ public class TrashExportationResource {
     private String applicationName;
 
     private final TrashExportationService trashExportationService;
+    private final OsbbService osbbService;
 
     private final TrashExportationRepository trashExportationRepository;
 
     public TrashExportationResource(
+        OsbbService osbbService,
         TrashExportationService trashExportationService,
         TrashExportationRepository trashExportationRepository
     ) {
         this.trashExportationService = trashExportationService;
         this.trashExportationRepository = trashExportationRepository;
+        this.osbbService = osbbService;
     }
 
     @PostMapping("/export-trash")
     public ResponseEntity<String> exportTrash(
         @RequestParam(name = "emptyTrashImages") List<MultipartFile> emptyTrashImages,
         @RequestParam(name = "fullTrashImages") List<MultipartFile> fullTrashImages,
-        @RequestParam(name = "containerCount") Integer containerCount,
-        @RequestParam(name = "trashType") String trashType,
+        @RequestParam(name = "containerCount", required = false) Integer containerCount,
+        @RequestParam(name = "trashType", required = false) String trashType,
         @RequestParam(name = "isWash") Boolean isWash,
         @RequestParam(name = "osbbId") Long osbbId
     ) {
         ExportTrashDto dto = new ExportTrashDto();
         dto.setEmptyTrashImages(emptyTrashImages);
         dto.setFullTrashImages(fullTrashImages);
-        dto.setContainerCount(containerCount);
-        dto.setTrashType(trashType);
-        dto.setOsbbId(osbbId);
-        dto.setWash(isWash);
 
-        trashExportationService.exportTrash(dto);
+        Optional<OsbbDTO> optionalOsbbDTO = osbbService.findOne(osbbId);
+
+        TrashExportationDTO exportationDTO = new TrashExportationDTO();
+        exportationDTO.setOsbb(optionalOsbbDTO.get());
+        exportationDTO.setTrash_type(trashType);
+        exportationDTO.setDate(ZonedDateTime.now());
+
+        if (!isWash) {
+            exportationDTO.setWeight(trashExportationService.calculateWeight(containerCount, trashType));
+        }
+
+        exportationDTO.setIs_wash(isWash);
+
+        trashExportationService.exportTrash(exportationDTO, dto);
 
         return ResponseEntity.ok("succesfully exported");
     }

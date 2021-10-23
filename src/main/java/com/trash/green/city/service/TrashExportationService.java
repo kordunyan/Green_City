@@ -1,7 +1,11 @@
 package com.trash.green.city.service;
 
 import com.trash.green.city.constants.ConvertationRate;
+import com.trash.green.city.domain.EmptyTrashImages;
+import com.trash.green.city.domain.FullTrashImages;
 import com.trash.green.city.domain.TrashExportation;
+import com.trash.green.city.repository.EmptyTrashImagesRepository;
+import com.trash.green.city.repository.FullTrashImagesRepository;
 import com.trash.green.city.repository.TrashExportationRepository;
 import com.trash.green.city.service.dto.OsbbDTO;
 import com.trash.green.city.service.dto.TrashExportationDTO;
@@ -11,7 +15,9 @@ import java.time.ZonedDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
+import liquibase.pro.packaged.O;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -27,37 +33,60 @@ public class TrashExportationService {
     private final Logger log = LoggerFactory.getLogger(TrashExportationService.class);
 
     private final TrashExportationRepository trashExportationRepository;
+    private final EmptyTrashImagesRepository emptyTrashImagesRepository;
+    private final FullTrashImagesRepository fullTrashImagesRepository;
 
     private final TrashExportationMapper trashExportationMapper;
+    private final ImageService imageService;
     private final OsbbService osbbService;
 
     public TrashExportationService(
+        EmptyTrashImagesRepository emptyTrashImagesRepository,
+        FullTrashImagesRepository fullTrashImagesRepository,
         TrashExportationRepository trashExportationRepository,
         TrashExportationMapper trashExportationMapper,
+        ImageService imageService,
         OsbbService osbbService
     ) {
         this.trashExportationRepository = trashExportationRepository;
+        this.emptyTrashImagesRepository = emptyTrashImagesRepository;
+        this.fullTrashImagesRepository = fullTrashImagesRepository;
         this.trashExportationMapper = trashExportationMapper;
+        this.imageService = imageService;
         this.osbbService = osbbService;
     }
 
-    public void exportTrash(ExportTrashDto dto) {
-        TrashExportationDTO exportationDTO = new TrashExportationDTO();
-        exportationDTO.setWeight(calculateWeight(dto.getContainerCount(), dto.getTrashType()));
-        exportationDTO.setTrash_type(dto.getTrashType());
-        exportationDTO.setDate(ZonedDateTime.now());
-        exportationDTO.setIs_wash(dto.getWash());
+    public void exportTrash(TrashExportationDTO exportationDTO, ExportTrashDto dto) {
+        List<String> emptyTrashIMageNames = imageService.saveImages(dto.getEmptyTrashImages());
+        List<String> fullTrashIMageNames = imageService.saveImages(dto.getFullTrashImages());
 
-        Optional<OsbbDTO> optionalOsbbDTO = osbbService.findOne(dto.getOsbbId());
+        Set<FullTrashImages> fullTrashImages = fullTrashIMageNames.stream().map(this::createFullTrashImages).collect(Collectors.toSet());
 
-        if (!optionalOsbbDTO.isPresent()) {
-            throw new IllegalStateException(String.format("Osbb with id %s npt found", dto.getOsbbId()));
-        }
-        exportationDTO.setOsbb(optionalOsbbDTO.get());
+        Set<EmptyTrashImages> emptyTrashImages = emptyTrashIMageNames
+            .stream()
+            .map(this::createEmptyTrashImages)
+            .collect(Collectors.toSet());
 
         TrashExportation trashExportation = trashExportationMapper.toEntity(exportationDTO);
+        trashExportationRepository.save(trashExportation);
+        //        trashExportation.setEmptyTrashImages(emptyTrashImages);
+        //        trashExportation.setFullTrashImages(fullTrashImages);
+        //
+        //        emptyTrashImagesRepository.saveAll(emptyTrashImages);
+        //        fullTrashImagesRepository.saveAll(fullTrashImages);
 
-        trashExportation.getEmptyTrashImages();
+    }
+
+    private EmptyTrashImages createEmptyTrashImages(String imageName) {
+        EmptyTrashImages trashImages = new EmptyTrashImages();
+        trashImages.setPath(imageName);
+        return trashImages;
+    }
+
+    private FullTrashImages createFullTrashImages(String imageName) {
+        FullTrashImages trashImages = new FullTrashImages();
+        trashImages.setPath(imageName);
+        return trashImages;
     }
 
     public Integer calculateWeight(Integer containerCount, String trashType) {

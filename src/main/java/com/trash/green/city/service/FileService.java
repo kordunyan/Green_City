@@ -12,6 +12,6 @@ public class FileService {
     private PhotoDAO photoRepository;
 
     public void saveImage(MultipartFile imageFile, PhotoEntity photoDTO) throws Exception {
-        photoRepository.savePhotoImage(photoDTO, imageFile);
+        //photoRepository.savePhotoImage(photoDTO, imageFile);
     }
 }
