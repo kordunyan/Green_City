@@ -2,6 +2,7 @@ package com.trash.green.city.service.mapper;
 
 import com.trash.green.city.domain.TrashExportation;
 import com.trash.green.city.service.dto.TrashExportationDTO;
+import com.trash.green.city.service.dto.TrashExportationWithImagesDTO;
 import org.mapstruct.*;
 
 /**

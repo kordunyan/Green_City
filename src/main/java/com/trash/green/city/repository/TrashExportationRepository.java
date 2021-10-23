@@ -1,6 +1,7 @@
 package com.trash.green.city.repository;
 
 import com.trash.green.city.domain.TrashExportation;
+import java.util.List;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -9,4 +10,6 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface TrashExportationRepository extends JpaRepository<TrashExportation, Long> {}
+public interface TrashExportationRepository extends JpaRepository<TrashExportation, Long> {
+    List<TrashExportation> findAllByOsbbId(Long id);
+}

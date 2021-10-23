@@ -8,12 +8,10 @@ import com.trash.green.city.repository.EmptyTrashImagesRepository;
 import com.trash.green.city.repository.FullTrashImagesRepository;
 import com.trash.green.city.repository.TrashExportationRepository;
 import com.trash.green.city.service.dto.TrashExportationDTO;
+import com.trash.green.city.service.dto.TrashExportationWithImagesDTO;
 import com.trash.green.city.service.exportation.ExportTrashDto;
 import com.trash.green.city.service.mapper.TrashExportationMapper;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -155,5 +153,37 @@ public class TrashExportationService {
     public void delete(Long id) {
         log.debug("Request to delete TrashExportation : {}", id);
         trashExportationRepository.deleteById(id);
+    }
+
+    public List<TrashExportationWithImagesDTO> getByOsbbId(Long id) {
+        List<TrashExportation> allByOsbbId = trashExportationRepository.findAllByOsbbId(id);
+        List<TrashExportationWithImagesDTO> result = new ArrayList<>();
+        for (TrashExportation trashExportation : allByOsbbId) {
+            TrashExportationDTO exportationDTO = trashExportationMapper.toDto(trashExportation);
+            TrashExportationWithImagesDTO dto = new TrashExportationWithImagesDTO();
+            dto.setOsbb(exportationDTO.getOsbb());
+            dto.setTrash_type(exportationDTO.getTrash_type());
+            dto.setDate(exportationDTO.getDate());
+            dto.setIs_wash(exportationDTO.getIs_wash());
+            dto.setWeight(exportationDTO.getWeight());
+            dto.setId(exportationDTO.getId());
+
+            List<String> emptyTrash = trashExportation
+                .getEmptyTrashImages()
+                .stream()
+                .map(EmptyTrashImages::getPath)
+                .collect(Collectors.toList());
+
+            List<String> fullTrash = trashExportation
+                .getFullTrashImages()
+                .stream()
+                .map(FullTrashImages::getPath)
+                .collect(Collectors.toList());
+
+            dto.setEmptyTrashImages(emptyTrash);
+            dto.setFullTrashImages(fullTrash);
+            result.add(dto);
+        }
+        return result;
     }
 }
