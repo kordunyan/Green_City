@@ -1,0 +1,16 @@
+{
+  "fields": [
+    {
+      "fieldName": "path",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "service": "serviceClass",
+  "dto": "mapstruct",
+  "jpaMetamodelFiltering": false,
+  "readOnly": false,
+  "pagination": "no",
+  "name": "EmptyTrashImages",
+  "changelogDate": "20211023112328"
+}

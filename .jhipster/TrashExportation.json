@@ -1,0 +1,38 @@
+{
+  "fields": [
+    {
+      "fieldName": "weight",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "trash_type",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "action",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipName": "osbb",
+      "otherEntityName": "osbb",
+      "relationshipType": "one-to-one",
+      "otherEntityField": "name",
+      "ownerSide": true,
+      "id": false,
+      "otherEntityRelationshipName": "trashExportation"
+    }
+  ],
+  "service": "serviceClass",
+  "dto": "mapstruct",
+  "jpaMetamodelFiltering": false,
+  "readOnly": false,
+  "pagination": "no",
+  "name": "TrashExportation",
+  "changelogDate": "20211023110943"
+}
