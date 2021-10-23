@@ -11,17 +11,13 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class PhotoDAO {
 
-    @Autowired
-    private PhotoRepository photoRepository;
-
-    public void savePhotoImage(PhotoEntity photo, MultipartFile imageFile) throws Exception {
+    public String savePhotoImage(MultipartFile imageFile) throws Exception {
         // this gets us to src/main/resources without knowing the full path (hardcoding)
         Path currentPath = Paths.get(".");
-        Path absolutePath = currentPath.toAbsolutePath();
-        photo.setBucket(absolutePath + "/src/main/resources/static/photos/");
+        Path absolutePath = Paths.get(Paths.get(".").toAbsolutePath().toString(), "/src/main/resources/static/photos/");
         byte[] bytes = imageFile.getBytes();
-        Path path = Paths.get(photo.getBucket() + imageFile.getOriginalFilename());
+        Path path = Paths.get(absolutePath.toString(), imageFile.getOriginalFilename());
         Files.write(path, bytes);
-        photoRepository.save(photo);
+        return imageFile.getOriginalFilename();
     }
 }

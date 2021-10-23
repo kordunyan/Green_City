@@ -1,5 +1,7 @@
 package com.trash.green.city.config;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -39,6 +41,15 @@ public class StaticResourcesWebConfiguration implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         ResourceHandlerRegistration resourceHandlerRegistration = appendResourceHandler(registry);
         initializeResourceHandler(resourceHandlerRegistration);
+        //        Path targetImagePath = Paths.get(
+        //            Paths.get(".").toAbsolutePath().toString(),
+        //            "/src/main/resources/static/photos/");
+        //
+        //        registry.addResourceHandler("/images/**")
+        //            .addResourceLocations("file:" + targetImagePath)
+        //            .setCacheControl(CacheControl.maxAge(24, TimeUnit.HOURS)
+        //                .noTransform()
+        //                .mustRevalidate());
     }
 
     protected ResourceHandlerRegistration appendResourceHandler(ResourceHandlerRegistry registry) {
