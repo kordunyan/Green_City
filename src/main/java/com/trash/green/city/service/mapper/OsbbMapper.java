@@ -12,9 +12,8 @@ public interface OsbbMapper extends EntityMapper<OsbbDTO, Osbb> {
     @Mapping(target = "trashCompany", source = "trashCompany", qualifiedByName = "name")
     OsbbDTO toDto(Osbb s);
 
-    @Named("name")
+    @Named("id")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    @Mapping(target = "name", source = "name")
-    OsbbDTO toDtoName(Osbb osbb);
+    OsbbDTO toDtoId(Osbb osbb);
 }

@@ -103,7 +103,7 @@ export const TrashExportationUpdate = (props: RouteComponentProps<{ id: string }
                 {osbbs
                   ? osbbs.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.name}
+                        {otherEntity.id}
                       </option>
                     ))
                   : null}

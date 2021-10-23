@@ -34,11 +34,6 @@ public class TrashExportation implements Serializable {
     @Column(name = "is_wash")
     private Boolean is_wash;
 
-    @JsonIgnoreProperties(value = { "trashCompany" }, allowSetters = true)
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Osbb osbb;
-
     @OneToMany(mappedBy = "trashExportation")
     @JsonIgnoreProperties(value = { "trashExportation" }, allowSetters = true)
     private Set<FullTrashImages> fullTrashImages = new HashSet<>();
@@ -46,6 +41,10 @@ public class TrashExportation implements Serializable {
     @OneToMany(mappedBy = "trashExportation")
     @JsonIgnoreProperties(value = { "trashExportation" }, allowSetters = true)
     private Set<EmptyTrashImages> emptyTrashImages = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "trashCompany" }, allowSetters = true)
+    private Osbb osbb;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -114,19 +113,6 @@ public class TrashExportation implements Serializable {
         this.is_wash = is_wash;
     }
 
-    public Osbb getOsbb() {
-        return this.osbb;
-    }
-
-    public void setOsbb(Osbb osbb) {
-        this.osbb = osbb;
-    }
-
-    public TrashExportation osbb(Osbb osbb) {
-        this.setOsbb(osbb);
-        return this;
-    }
-
     public Set<FullTrashImages> getFullTrashImages() {
         return this.fullTrashImages;
     }
@@ -186,6 +172,19 @@ public class TrashExportation implements Serializable {
     public TrashExportation removeEmptyTrashImages(EmptyTrashImages emptyTrashImages) {
         this.emptyTrashImages.remove(emptyTrashImages);
         emptyTrashImages.setTrashExportation(null);
+        return this;
+    }
+
+    public Osbb getOsbb() {
+        return this.osbb;
+    }
+
+    public void setOsbb(Osbb osbb) {
+        this.osbb = osbb;
+    }
+
+    public TrashExportation osbb(Osbb osbb) {
+        this.setOsbb(osbb);
         return this;
     }
 

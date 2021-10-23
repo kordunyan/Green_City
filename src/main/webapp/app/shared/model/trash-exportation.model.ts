@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
-import { IOsbb } from 'app/shared/model/osbb.model';
 import { IFullTrashImages } from 'app/shared/model/full-trash-images.model';
 import { IEmptyTrashImages } from 'app/shared/model/empty-trash-images.model';
+import { IOsbb } from 'app/shared/model/osbb.model';
 
 export interface ITrashExportation {
   id?: number;
@@ -9,9 +9,9 @@ export interface ITrashExportation {
   date?: string | null;
   trash_type?: string | null;
   is_wash?: boolean | null;
-  osbb?: IOsbb | null;
   fullTrashImages?: IFullTrashImages[] | null;
   emptyTrashImages?: IEmptyTrashImages[] | null;
+  osbb?: IOsbb | null;
 }
 
 export const defaultValue: Readonly<ITrashExportation> = {

@@ -46,9 +46,9 @@ public class TrashExportationResource {
         TrashExportationService trashExportationService,
         TrashExportationRepository trashExportationRepository
     ) {
+        this.osbbService = osbbService;
         this.trashExportationService = trashExportationService;
         this.trashExportationRepository = trashExportationRepository;
-        this.osbbService = osbbService;
     }
 
     @PostMapping("/export-trash")

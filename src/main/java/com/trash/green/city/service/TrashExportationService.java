@@ -7,17 +7,14 @@ import com.trash.green.city.domain.TrashExportation;
 import com.trash.green.city.repository.EmptyTrashImagesRepository;
 import com.trash.green.city.repository.FullTrashImagesRepository;
 import com.trash.green.city.repository.TrashExportationRepository;
-import com.trash.green.city.service.dto.OsbbDTO;
 import com.trash.green.city.service.dto.TrashExportationDTO;
 import com.trash.green.city.service.exportation.ExportTrashDto;
 import com.trash.green.city.service.mapper.TrashExportationMapper;
-import java.time.ZonedDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import liquibase.pro.packaged.O;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -37,23 +34,21 @@ public class TrashExportationService {
     private final FullTrashImagesRepository fullTrashImagesRepository;
 
     private final TrashExportationMapper trashExportationMapper;
+
     private final ImageService imageService;
-    private final OsbbService osbbService;
 
     public TrashExportationService(
         EmptyTrashImagesRepository emptyTrashImagesRepository,
         FullTrashImagesRepository fullTrashImagesRepository,
         TrashExportationRepository trashExportationRepository,
         TrashExportationMapper trashExportationMapper,
-        ImageService imageService,
-        OsbbService osbbService
+        ImageService imageService
     ) {
         this.trashExportationRepository = trashExportationRepository;
-        this.emptyTrashImagesRepository = emptyTrashImagesRepository;
-        this.fullTrashImagesRepository = fullTrashImagesRepository;
         this.trashExportationMapper = trashExportationMapper;
         this.imageService = imageService;
-        this.osbbService = osbbService;
+        this.emptyTrashImagesRepository = emptyTrashImagesRepository;
+        this.fullTrashImagesRepository = fullTrashImagesRepository;
     }
 
     public void exportTrash(TrashExportationDTO exportationDTO, ExportTrashDto dto) {
@@ -69,12 +64,10 @@ public class TrashExportationService {
 
         TrashExportation trashExportation = trashExportationMapper.toEntity(exportationDTO);
         trashExportationRepository.save(trashExportation);
-        //        trashExportation.setEmptyTrashImages(emptyTrashImages);
-        //        trashExportation.setFullTrashImages(fullTrashImages);
-        //
-        //        emptyTrashImagesRepository.saveAll(emptyTrashImages);
-        //        fullTrashImagesRepository.saveAll(fullTrashImages);
-
+        trashExportation.setEmptyTrashImages(emptyTrashImages);
+        trashExportation.setFullTrashImages(fullTrashImages);
+        emptyTrashImagesRepository.saveAll(emptyTrashImages);
+        fullTrashImagesRepository.saveAll(fullTrashImages);
     }
 
     private EmptyTrashImages createEmptyTrashImages(String imageName) {

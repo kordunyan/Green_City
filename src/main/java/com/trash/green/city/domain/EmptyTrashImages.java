@@ -23,7 +23,7 @@ public class EmptyTrashImages implements Serializable {
     private String path;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "osbb", "fullTrashImages", "emptyTrashImages" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "fullTrashImages", "emptyTrashImages", "osbb" }, allowSetters = true)
     private TrashExportation trashExportation;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
