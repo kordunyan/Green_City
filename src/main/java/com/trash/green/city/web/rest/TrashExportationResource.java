@@ -5,6 +5,7 @@ import com.trash.green.city.service.OsbbService;
 import com.trash.green.city.service.TrashExportationService;
 import com.trash.green.city.service.dto.OsbbDTO;
 import com.trash.green.city.service.dto.TrashExportationDTO;
+import com.trash.green.city.service.dto.TrashExportationWithImagesDTO;
 import com.trash.green.city.service.exportation.ExportTrashDto;
 import com.trash.green.city.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -49,6 +50,12 @@ public class TrashExportationResource {
         this.osbbService = osbbService;
         this.trashExportationService = trashExportationService;
         this.trashExportationRepository = trashExportationRepository;
+    }
+
+    @GetMapping("/trash-exportation-by-osbb/{id}")
+    public List<TrashExportationWithImagesDTO> getByOsbb(@PathVariable(value = "id", required = false) final Long id) {
+        List<TrashExportationWithImagesDTO> byOsbbId = trashExportationService.getByOsbbId(id);
+        return byOsbbId;
     }
 
     @PostMapping("/export-trash")
