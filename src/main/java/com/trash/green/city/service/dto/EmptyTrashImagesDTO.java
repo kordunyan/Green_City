@@ -12,6 +12,8 @@ public class EmptyTrashImagesDTO implements Serializable {
 
     private String path;
 
+    private TrashExportationDTO trashExportation;
+
     public Long getId() {
         return id;
     }
@@ -26,6 +28,14 @@ public class EmptyTrashImagesDTO implements Serializable {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public TrashExportationDTO getTrashExportation() {
+        return trashExportation;
+    }
+
+    public void setTrashExportation(TrashExportationDTO trashExportation) {
+        this.trashExportation = trashExportation;
     }
 
     @Override
@@ -55,6 +65,7 @@ public class EmptyTrashImagesDTO implements Serializable {
         return "EmptyTrashImagesDTO{" +
             "id=" + getId() +
             ", path='" + getPath() + "'" +
+            ", trashExportation=" + getTrashExportation() +
             "}";
     }
 }

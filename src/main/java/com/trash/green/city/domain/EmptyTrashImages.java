@@ -1,5 +1,6 @@
 package com.trash.green.city.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -20,6 +21,10 @@ public class EmptyTrashImages implements Serializable {
 
     @Column(name = "path")
     private String path;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "osbb", "fullTrashImages", "emptyTrashImages" }, allowSetters = true)
+    private TrashExportation trashExportation;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -47,6 +52,19 @@ public class EmptyTrashImages implements Serializable {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public TrashExportation getTrashExportation() {
+        return this.trashExportation;
+    }
+
+    public void setTrashExportation(TrashExportation trashExportation) {
+        this.trashExportation = trashExportation;
+    }
+
+    public EmptyTrashImages trashExportation(TrashExportation trashExportation) {
+        this.setTrashExportation(trashExportation);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

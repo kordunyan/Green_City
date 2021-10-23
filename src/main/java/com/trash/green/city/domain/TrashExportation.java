@@ -3,6 +3,8 @@ package com.trash.green.city.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 
 /**
@@ -32,10 +34,21 @@ public class TrashExportation implements Serializable {
     @Column(name = "action")
     private String action;
 
+    @Column(name = "is_wash")
+    private Boolean is_wash;
+
     @JsonIgnoreProperties(value = { "trashCompany" }, allowSetters = true)
     @OneToOne
     @JoinColumn(unique = true)
     private Osbb osbb;
+
+    @OneToMany(mappedBy = "trashExportation")
+    @JsonIgnoreProperties(value = { "trashExportation" }, allowSetters = true)
+    private Set<FullTrashImages> fullTrashImages = new HashSet<>();
+
+    @OneToMany(mappedBy = "trashExportation")
+    @JsonIgnoreProperties(value = { "trashExportation" }, allowSetters = true)
+    private Set<EmptyTrashImages> emptyTrashImages = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -104,6 +117,19 @@ public class TrashExportation implements Serializable {
         this.action = action;
     }
 
+    public Boolean getIs_wash() {
+        return this.is_wash;
+    }
+
+    public TrashExportation is_wash(Boolean is_wash) {
+        this.setIs_wash(is_wash);
+        return this;
+    }
+
+    public void setIs_wash(Boolean is_wash) {
+        this.is_wash = is_wash;
+    }
+
     public Osbb getOsbb() {
         return this.osbb;
     }
@@ -114,6 +140,68 @@ public class TrashExportation implements Serializable {
 
     public TrashExportation osbb(Osbb osbb) {
         this.setOsbb(osbb);
+        return this;
+    }
+
+    public Set<FullTrashImages> getFullTrashImages() {
+        return this.fullTrashImages;
+    }
+
+    public void setFullTrashImages(Set<FullTrashImages> fullTrashImages) {
+        if (this.fullTrashImages != null) {
+            this.fullTrashImages.forEach(i -> i.setTrashExportation(null));
+        }
+        if (fullTrashImages != null) {
+            fullTrashImages.forEach(i -> i.setTrashExportation(this));
+        }
+        this.fullTrashImages = fullTrashImages;
+    }
+
+    public TrashExportation fullTrashImages(Set<FullTrashImages> fullTrashImages) {
+        this.setFullTrashImages(fullTrashImages);
+        return this;
+    }
+
+    public TrashExportation addFullTrashImages(FullTrashImages fullTrashImages) {
+        this.fullTrashImages.add(fullTrashImages);
+        fullTrashImages.setTrashExportation(this);
+        return this;
+    }
+
+    public TrashExportation removeFullTrashImages(FullTrashImages fullTrashImages) {
+        this.fullTrashImages.remove(fullTrashImages);
+        fullTrashImages.setTrashExportation(null);
+        return this;
+    }
+
+    public Set<EmptyTrashImages> getEmptyTrashImages() {
+        return this.emptyTrashImages;
+    }
+
+    public void setEmptyTrashImages(Set<EmptyTrashImages> emptyTrashImages) {
+        if (this.emptyTrashImages != null) {
+            this.emptyTrashImages.forEach(i -> i.setTrashExportation(null));
+        }
+        if (emptyTrashImages != null) {
+            emptyTrashImages.forEach(i -> i.setTrashExportation(this));
+        }
+        this.emptyTrashImages = emptyTrashImages;
+    }
+
+    public TrashExportation emptyTrashImages(Set<EmptyTrashImages> emptyTrashImages) {
+        this.setEmptyTrashImages(emptyTrashImages);
+        return this;
+    }
+
+    public TrashExportation addEmptyTrashImages(EmptyTrashImages emptyTrashImages) {
+        this.emptyTrashImages.add(emptyTrashImages);
+        emptyTrashImages.setTrashExportation(this);
+        return this;
+    }
+
+    public TrashExportation removeEmptyTrashImages(EmptyTrashImages emptyTrashImages) {
+        this.emptyTrashImages.remove(emptyTrashImages);
+        emptyTrashImages.setTrashExportation(null);
         return this;
     }
 
@@ -145,6 +233,7 @@ public class TrashExportation implements Serializable {
             ", date='" + getDate() + "'" +
             ", trash_type='" + getTrash_type() + "'" +
             ", action='" + getAction() + "'" +
+            ", is_wash='" + getIs_wash() + "'" +
             "}";
     }
 }

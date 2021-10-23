@@ -19,6 +19,8 @@ public class TrashExportationDTO implements Serializable {
 
     private String action;
 
+    private Boolean is_wash;
+
     private OsbbDTO osbb;
 
     public Long getId() {
@@ -61,6 +63,14 @@ public class TrashExportationDTO implements Serializable {
         this.action = action;
     }
 
+    public Boolean getIs_wash() {
+        return is_wash;
+    }
+
+    public void setIs_wash(Boolean is_wash) {
+        this.is_wash = is_wash;
+    }
+
     public OsbbDTO getOsbb() {
         return osbb;
     }
@@ -99,6 +109,7 @@ public class TrashExportationDTO implements Serializable {
             ", date='" + getDate() + "'" +
             ", trash_type='" + getTrash_type() + "'" +
             ", action='" + getAction() + "'" +
+            ", is_wash='" + getIs_wash() + "'" +
             ", osbb=" + getOsbb() +
             "}";
     }

@@ -5,7 +5,14 @@
       "fieldType": "String"
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipName": "trashExportation",
+      "otherEntityName": "trashExportation",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id"
+    }
+  ],
   "service": "serviceClass",
   "dto": "mapstruct",
   "jpaMetamodelFiltering": false,

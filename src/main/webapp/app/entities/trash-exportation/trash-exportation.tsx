@@ -49,6 +49,7 @@ export const TrashExportation = (props: RouteComponentProps<{ url: string }>) =>
                 <th>Date</th>
                 <th>Trash Type</th>
                 <th>Action</th>
+                <th>Is Wash</th>
                 <th>Osbb</th>
                 <th />
               </tr>
@@ -67,6 +68,7 @@ export const TrashExportation = (props: RouteComponentProps<{ url: string }>) =>
                   </td>
                   <td>{trashExportation.trash_type}</td>
                   <td>{trashExportation.action}</td>
+                  <td>{trashExportation.is_wash ? 'true' : 'false'}</td>
                   <td>{trashExportation.osbb ? <Link to={`osbb/${trashExportation.osbb.id}`}>{trashExportation.osbb.name}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">

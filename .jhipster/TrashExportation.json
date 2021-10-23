@@ -15,6 +15,10 @@
     {
       "fieldName": "action",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "is_wash",
+      "fieldType": "Boolean"
     }
   ],
   "relationships": [
@@ -25,6 +29,18 @@
       "otherEntityField": "name",
       "ownerSide": true,
       "id": false,
+      "otherEntityRelationshipName": "trashExportation"
+    },
+    {
+      "relationshipName": "fullTrashImages",
+      "otherEntityName": "fullTrashImages",
+      "relationshipType": "one-to-many",
+      "otherEntityRelationshipName": "trashExportation"
+    },
+    {
+      "relationshipName": "emptyTrashImages",
+      "otherEntityName": "emptyTrashImages",
+      "relationshipType": "one-to-many",
       "otherEntityRelationshipName": "trashExportation"
     }
   ],

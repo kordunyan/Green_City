@@ -46,6 +46,7 @@ export const EmptyTrashImages = (props: RouteComponentProps<{ url: string }>) =>
               <tr>
                 <th>ID</th>
                 <th>Path</th>
+                <th>Trash Exportation</th>
                 <th />
               </tr>
             </thead>
@@ -58,6 +59,13 @@ export const EmptyTrashImages = (props: RouteComponentProps<{ url: string }>) =>
                     </Button>
                   </td>
                   <td>{emptyTrashImages.path}</td>
+                  <td>
+                    {emptyTrashImages.trashExportation ? (
+                      <Link to={`trash-exportation/${emptyTrashImages.trashExportation.id}`}>{emptyTrashImages.trashExportation.id}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${emptyTrashImages.id}`} color="info" size="sm" data-cy="entityDetailsButton">

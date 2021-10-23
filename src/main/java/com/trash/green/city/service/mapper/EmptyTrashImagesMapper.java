@@ -7,5 +7,8 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link EmptyTrashImages} and its DTO {@link EmptyTrashImagesDTO}.
  */
-@Mapper(componentModel = "spring", uses = {})
-public interface EmptyTrashImagesMapper extends EntityMapper<EmptyTrashImagesDTO, EmptyTrashImages> {}
+@Mapper(componentModel = "spring", uses = { TrashExportationMapper.class })
+public interface EmptyTrashImagesMapper extends EntityMapper<EmptyTrashImagesDTO, EmptyTrashImages> {
+    @Mapping(target = "trashExportation", source = "trashExportation", qualifiedByName = "id")
+    EmptyTrashImagesDTO toDto(EmptyTrashImages s);
+}
