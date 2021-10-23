@@ -38,6 +38,11 @@ const PhotoGroup = ({ maxPhotosCount, groupName, onChange }) => {
         setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
     };
 
+    const onBeforeUpload = file => {
+      console.log('file', file)
+      return file;
+    };
+
     return (
         <div>
             <h3>{groupName}</h3>
@@ -46,7 +51,7 @@ const PhotoGroup = ({ maxPhotosCount, groupName, onChange }) => {
                 fileList={fileList}
                 onPreview={onPreview}
                 onChange={onChangeHandler}
-                beforeUpload={() => false}
+                beforeUpload={onBeforeUpload}
             >
                 {fileList.length < maxPhotosCount && (
                     <div>

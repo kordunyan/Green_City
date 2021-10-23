@@ -44,9 +44,13 @@ public class ImageService {
 
         String hashName = generateNameByContent(new File(absolutePath), format);
 
-        Path targetImagePath = Paths.get(Paths.get(".").toAbsolutePath().toString(), "/src/main/resources/static/photos/", hashName);
+        Path targetImagePath = Paths.get(getImagePath(hashName), hashName);
         Files.copy(tempImagePath, targetImagePath, StandardCopyOption.REPLACE_EXISTING);
         return hashName;
+    }
+
+    public String getImagePath(String imageName) {
+        return Paths.get(Paths.get(".").toAbsolutePath().toString(), "/src/main/resources/static/photos/", imageName).toString();
     }
 
     private String generateNameByContent(File file, String format) throws IOException {

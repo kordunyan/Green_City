@@ -1,15 +1,22 @@
 import { useState } from 'react';
 import { Button } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
+import { toast } from 'react-toastify';
+import { exportTrash } from '../api/trash';
 
 export const withSubmit = Component => props => {
     const [values, setValues] = useState(null);
 
     const onChange = values => setValues(values);
 
-    const onSubmit = event => {
+    const onSubmit = async event => {
         event.preventDefault();
-        console.log('dasd', values);
+        try {
+          await exportTrash(values);
+          toast.success('Інформація успішно збережена');
+        } catch (e) {
+          toast.error('Відбулася невідома помилка');
+        }
     };
 
     return (

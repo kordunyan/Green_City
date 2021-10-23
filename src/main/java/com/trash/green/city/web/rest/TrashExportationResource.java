@@ -60,8 +60,8 @@ public class TrashExportationResource {
 
     @PostMapping("/export-trash")
     public ResponseEntity<String> exportTrash(
-        @RequestParam(name = "emptyTrashImages") List<MultipartFile> emptyTrashImages,
-        @RequestParam(name = "fullTrashImages") List<MultipartFile> fullTrashImages,
+        @RequestParam(name = "emptyTrashImages[]", required = false) List<MultipartFile> emptyTrashImages,
+        @RequestParam(name = "fullTrashImages[]", required = false) List<MultipartFile> fullTrashImages,
         @RequestParam(name = "containerCount", required = false) Integer containerCount,
         @RequestParam(name = "trashType", required = false) String trashType,
         @RequestParam(name = "isWash") Boolean isWash,
