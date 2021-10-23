@@ -98,6 +98,7 @@ export const TrashExportationUpdate = (props: RouteComponentProps<{ id: string }
               />
               <ValidatedField label="Trash Type" id="trash-exportation-trash_type" name="trash_type" data-cy="trash_type" type="text" />
               <ValidatedField label="Action" id="trash-exportation-action" name="action" data-cy="action" type="text" />
+              <ValidatedField label="Is Wash" id="trash-exportation-is_wash" name="is_wash" data-cy="is_wash" check type="checkbox" />
               <ValidatedField id="trash-exportation-osbb" name="osbb" data-cy="osbb" label="Osbb" type="select">
                 <option value="" key="0" />
                 {osbbs

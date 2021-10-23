@@ -11,4 +11,9 @@ import org.mapstruct.*;
 public interface TrashExportationMapper extends EntityMapper<TrashExportationDTO, TrashExportation> {
     @Mapping(target = "osbb", source = "osbb", qualifiedByName = "name")
     TrashExportationDTO toDto(TrashExportation s);
+
+    @Named("id")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    TrashExportationDTO toDtoId(TrashExportation trashExportation);
 }

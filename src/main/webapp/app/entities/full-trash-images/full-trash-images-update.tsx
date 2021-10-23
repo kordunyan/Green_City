@@ -4,6 +4,8 @@ import { Button, Row, Col, FormText } from 'reactstrap';
 import { isNumber, ValidatedField, ValidatedForm } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { ITrashExportation } from 'app/shared/model/trash-exportation.model';
+import { getEntities as getTrashExportations } from 'app/entities/trash-exportation/trash-exportation.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './full-trash-images.reducer';
 import { IFullTrashImages } from 'app/shared/model/full-trash-images.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -15,6 +17,7 @@ export const FullTrashImagesUpdate = (props: RouteComponentProps<{ id: string }>
 
   const [isNew] = useState(!props.match.params || !props.match.params.id);
 
+  const trashExportations = useAppSelector(state => state.trashExportation.entities);
   const fullTrashImagesEntity = useAppSelector(state => state.fullTrashImages.entity);
   const loading = useAppSelector(state => state.fullTrashImages.loading);
   const updating = useAppSelector(state => state.fullTrashImages.updating);
@@ -29,6 +32,8 @@ export const FullTrashImagesUpdate = (props: RouteComponentProps<{ id: string }>
     } else {
       dispatch(getEntity(props.match.params.id));
     }
+
+    dispatch(getTrashExportations({}));
   }, []);
 
   useEffect(() => {
@@ -41,6 +46,7 @@ export const FullTrashImagesUpdate = (props: RouteComponentProps<{ id: string }>
     const entity = {
       ...fullTrashImagesEntity,
       ...values,
+      trashExportation: trashExportations.find(it => it.id.toString() === values.trashExportation.toString()),
     };
 
     if (isNew) {
@@ -55,6 +61,7 @@ export const FullTrashImagesUpdate = (props: RouteComponentProps<{ id: string }>
       ? {}
       : {
           ...fullTrashImagesEntity,
+          trashExportation: fullTrashImagesEntity?.trashExportation?.id,
         };
 
   return (
@@ -76,6 +83,22 @@ export const FullTrashImagesUpdate = (props: RouteComponentProps<{ id: string }>
                 <ValidatedField name="id" required readOnly id="full-trash-images-id" label="ID" validate={{ required: true }} />
               ) : null}
               <ValidatedField label="Path" id="full-trash-images-path" name="path" data-cy="path" type="text" />
+              <ValidatedField
+                id="full-trash-images-trashExportation"
+                name="trashExportation"
+                data-cy="trashExportation"
+                label="Trash Exportation"
+                type="select"
+              >
+                <option value="" key="0" />
+                {trashExportations
+                  ? trashExportations.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/full-trash-images" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

@@ -43,6 +43,10 @@ export const TrashExportationDetail = (props: RouteComponentProps<{ id: string }
             <span id="action">Action</span>
           </dt>
           <dd>{trashExportationEntity.action}</dd>
+          <dt>
+            <span id="is_wash">Is Wash</span>
+          </dt>
+          <dd>{trashExportationEntity.is_wash ? 'true' : 'false'}</dd>
           <dt>Osbb</dt>
           <dd>{trashExportationEntity.osbb ? trashExportationEntity.osbb.name : ''}</dd>
         </dl>

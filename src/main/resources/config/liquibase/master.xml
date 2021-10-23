@@ -23,6 +23,8 @@
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20211023103700_added_entity_constraints_Osbb.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20211023110943_added_entity_constraints_TrashExportation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211023112131_added_entity_constraints_FullTrashImages.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20211023112328_added_entity_constraints_EmptyTrashImages.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

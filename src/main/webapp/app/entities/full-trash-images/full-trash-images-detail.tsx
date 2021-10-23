@@ -29,6 +29,8 @@ export const FullTrashImagesDetail = (props: RouteComponentProps<{ id: string }>
             <span id="path">Path</span>
           </dt>
           <dd>{fullTrashImagesEntity.path}</dd>
+          <dt>Trash Exportation</dt>
+          <dd>{fullTrashImagesEntity.trashExportation ? fullTrashImagesEntity.trashExportation.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/full-trash-images" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

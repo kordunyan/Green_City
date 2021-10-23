@@ -1,11 +1,11 @@
-id;weight;date;trash_type;action
-1;14519;2021-10-22T14:21:25;Sheqel;workforce
-2;31746;2021-10-23T00:16:21;HTTP;Union communities framework
-3;60425;2021-10-22T12:19:56;Future;Avon
-4;59079;2021-10-22T22:07:03;transmit Market;Niger pixel
-5;34837;2021-10-22T15:16:01;and;Account
-6;78725;2021-10-23T06:06:39;engine SMS;24/7 structure
-7;5579;2021-10-23T03:36:42;HDD Specialist compelling;synthesizing Gloves Associate
-8;28990;2021-10-22T15:05:28;Buckinghamshire Pizza;up Investment bifurcated
-9;5425;2021-10-23T00:15:32;Iran;Handmade
-10;42690;2021-10-23T02:18:50;JBOD;port Planner Organic
+id;weight;date;trash_type;action;is_wash
+1;14519;2021-10-22T14:21:25;Sheqel;workforce;false
+2;45371;2021-10-23T07:34:15;Shoes Grocery Ghana;Personal;true
+3;23821;2021-10-22T14:32:54;Avon;Jamaica up;false
+4;57746;2021-10-22T20:46:23;payment Investment;Towels architect Refined;false
+5;64918;2021-10-23T03:12:13;Utah Michigan Games;HTTP Facilitator Chips;false
+6;36787;2021-10-22T11:58:07;neural Cameroon;Associate;false
+7;83627;2021-10-22T20:38:32;calculate connecting;Rubber bifurcated Wooden;true
+8;1663;2021-10-23T10:10:05;Republic portals JBOD;port Planner Organic;false
+9;87893;2021-10-23T05:56:27;Pizza;National;false
+10;91534;2021-10-23T02:43:40;bus;port;false
