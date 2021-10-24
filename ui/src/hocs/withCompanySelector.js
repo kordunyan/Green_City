@@ -3,7 +3,6 @@ import CompanySelector from '../components/CompanySelector';
 
 export const withCompanySelector = Component => (props) => {
     let [companyId, setCompanyId] = useState(null);
-    companyId = 1 ;
 
     const onChange = values => {
         props.onChange({

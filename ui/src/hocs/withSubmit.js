@@ -14,6 +14,7 @@ export const withSubmit = Component => props => {
         try {
           await exportTrash(values);
           toast.success('Інформація успішно збережена');
+          props.goBack();
         } catch (e) {
           toast.error('Відбулася невідома помилка');
         }

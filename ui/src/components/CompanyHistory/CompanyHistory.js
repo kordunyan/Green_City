@@ -47,7 +47,7 @@ const CompanyHistory = () => {
           <Descriptions title='Інформація про ОСББ'>
             <Descriptions.Item label='Назва'>{companyInfo.name}</Descriptions.Item>
             <Descriptions.Item label='Адрес'>{companyInfo.address}</Descriptions.Item>
-            <Descriptions.Item label='Експедитор'>{companyInfo.trashCompany}</Descriptions.Item>
+            <Descriptions.Item label='Експедитор'>{companyInfo.trashCompany?.name}</Descriptions.Item>
           </Descriptions>
           <a href='mailto:kordunyanolexandr@gmail.com'>
             <Button>

@@ -44,7 +44,7 @@ public class ImageService {
 
         String hashName = generateNameByContent(new File(absolutePath), format);
 
-        Path targetImagePath = Paths.get(getImagePath(hashName), hashName);
+        Path targetImagePath = Paths.get(getImagePath(hashName));
         Files.copy(tempImagePath, targetImagePath, StandardCopyOption.REPLACE_EXISTING);
         return hashName;
     }

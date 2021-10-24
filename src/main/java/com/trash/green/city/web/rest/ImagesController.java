@@ -25,11 +25,12 @@ public class ImagesController {
     @GetMapping(value = "/{name}", produces = MediaType.IMAGE_JPEG_VALUE)
     public ResponseEntity<byte[]> getImage(@PathVariable String name) throws IOException {
         HttpHeaders headers = new HttpHeaders();
-        InputStream in = new FileInputStream(imageService.getImagePath(name));
-        byte[] media = IOUtils.toByteArray(in);
-        headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+        try (InputStream in = new FileInputStream(imageService.getImagePath(name))) {
+            byte[] media = IOUtils.toByteArray(in);
+            headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 
-        ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
-        return responseEntity;
+            ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+            return responseEntity;
+        }
     }
 }

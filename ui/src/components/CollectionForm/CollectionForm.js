@@ -46,6 +46,7 @@ const CollectionForm = ({ onChange }) => {
                     <Option value='PLASTIC'>Пластик</Option>
                     <Option value='MIXED'>Змішані</Option>
                     <Option value='PAPER'>Папір</Option>
+                    <Option value='ORGANIC'>Органічні</Option>
                 </Select>
             </div>
             <div>
