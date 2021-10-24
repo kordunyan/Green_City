@@ -33,10 +33,24 @@ export const Osbb = (props: RouteComponentProps<{ url: string }>) => {
           <Button className="mr-2" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} /> Refresh List
           </Button>
-          <Link to={`${match.url}/new`} className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
+          <Link
+            to={`${match.url}/new`}
+            className="btn btn-primary jh-create-entity mr-2"
+            id="jh-create-entity"
+            data-cy="entityCreateButton"
+          >
             <FontAwesomeIcon icon="plus" />
             &nbsp; Create new Osbb
           </Link>
+          <a
+            href="http://localhost:8080/export-by-osbb-csv"
+            className="btn btn-primary jh-create-entity"
+            id="jh-create-entity"
+            data-cy="entityCreateButton"
+          >
+            <FontAwesomeIcon icon="file" />
+            &nbsp; CSV
+          </a>
         </div>
       </h2>
       <div className="table-responsive">

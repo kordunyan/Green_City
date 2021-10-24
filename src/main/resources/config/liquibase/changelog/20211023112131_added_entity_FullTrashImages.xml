@@ -7,7 +7,7 @@
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <!--
-        Added the entity FullTrashImages.
+        Added the entity Report.
     -->
     <changeSet id="20211023112131-1" author="jhipster">
         <createTable tableName="full_trash_images">

@@ -50,7 +50,7 @@ public class FullTrashImagesResource {
     @PostMapping("/full-trash-images")
     public ResponseEntity<FullTrashImagesDTO> createFullTrashImages(@RequestBody FullTrashImagesDTO fullTrashImagesDTO)
         throws URISyntaxException {
-        log.debug("REST request to save FullTrashImages : {}", fullTrashImagesDTO);
+        log.debug("REST request to save Report : {}", fullTrashImagesDTO);
         if (fullTrashImagesDTO.getId() != null) {
             throw new BadRequestAlertException("A new fullTrashImages cannot already have an ID", ENTITY_NAME, "idexists");
         }
@@ -76,7 +76,7 @@ public class FullTrashImagesResource {
         @PathVariable(value = "id", required = false) final Long id,
         @RequestBody FullTrashImagesDTO fullTrashImagesDTO
     ) throws URISyntaxException {
-        log.debug("REST request to update FullTrashImages : {}, {}", id, fullTrashImagesDTO);
+        log.debug("REST request to update Report : {}, {}", id, fullTrashImagesDTO);
         if (fullTrashImagesDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
@@ -111,7 +111,7 @@ public class FullTrashImagesResource {
         @PathVariable(value = "id", required = false) final Long id,
         @RequestBody FullTrashImagesDTO fullTrashImagesDTO
     ) throws URISyntaxException {
-        log.debug("REST request to partial update FullTrashImages partially : {}, {}", id, fullTrashImagesDTO);
+        log.debug("REST request to partial update Report partially : {}, {}", id, fullTrashImagesDTO);
         if (fullTrashImagesDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
@@ -138,7 +138,7 @@ public class FullTrashImagesResource {
      */
     @GetMapping("/full-trash-images")
     public List<FullTrashImagesDTO> getAllFullTrashImages() {
-        log.debug("REST request to get all FullTrashImages");
+        log.debug("REST request to get all Report");
         return fullTrashImagesService.findAll();
     }
 
@@ -150,7 +150,7 @@ public class FullTrashImagesResource {
      */
     @GetMapping("/full-trash-images/{id}")
     public ResponseEntity<FullTrashImagesDTO> getFullTrashImages(@PathVariable Long id) {
-        log.debug("REST request to get FullTrashImages : {}", id);
+        log.debug("REST request to get Report : {}", id);
         Optional<FullTrashImagesDTO> fullTrashImagesDTO = fullTrashImagesService.findOne(id);
         return ResponseUtil.wrapOrNotFound(fullTrashImagesDTO);
     }
@@ -163,7 +163,7 @@ public class FullTrashImagesResource {
      */
     @DeleteMapping("/full-trash-images/{id}")
     public ResponseEntity<Void> deleteFullTrashImages(@PathVariable Long id) {
-        log.debug("REST request to delete FullTrashImages : {}", id);
+        log.debug("REST request to delete Report : {}", id);
         fullTrashImagesService.delete(id);
         return ResponseEntity
             .noContent()

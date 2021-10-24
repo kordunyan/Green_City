@@ -15,7 +15,11 @@ public enum ConvertationRate {
     }
 
     public static ConvertationRate getByType(String type) {
-        return Stream.of(ConvertationRate.values()).filter(value -> value.name().equalsIgnoreCase(type)).findFirst().get();
+        return Stream
+            .of(ConvertationRate.values())
+            .filter(value -> value.name().equalsIgnoreCase(type))
+            .findFirst()
+            .orElse(ConvertationRate.MIXED);
     }
 
     public Integer getRate() {

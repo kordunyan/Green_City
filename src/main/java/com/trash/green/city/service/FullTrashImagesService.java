@@ -38,7 +38,7 @@ public class FullTrashImagesService {
      * @return the persisted entity.
      */
     public FullTrashImagesDTO save(FullTrashImagesDTO fullTrashImagesDTO) {
-        log.debug("Request to save FullTrashImages : {}", fullTrashImagesDTO);
+        log.debug("Request to save Report : {}", fullTrashImagesDTO);
         FullTrashImages fullTrashImages = fullTrashImagesMapper.toEntity(fullTrashImagesDTO);
         fullTrashImages = fullTrashImagesRepository.save(fullTrashImages);
         return fullTrashImagesMapper.toDto(fullTrashImages);
@@ -51,7 +51,7 @@ public class FullTrashImagesService {
      * @return the persisted entity.
      */
     public Optional<FullTrashImagesDTO> partialUpdate(FullTrashImagesDTO fullTrashImagesDTO) {
-        log.debug("Request to partially update FullTrashImages : {}", fullTrashImagesDTO);
+        log.debug("Request to partially update Report : {}", fullTrashImagesDTO);
 
         return fullTrashImagesRepository
             .findById(fullTrashImagesDTO.getId())
@@ -71,7 +71,7 @@ public class FullTrashImagesService {
      */
     @Transactional(readOnly = true)
     public List<FullTrashImagesDTO> findAll() {
-        log.debug("Request to get all FullTrashImages");
+        log.debug("Request to get all Report");
         return fullTrashImagesRepository
             .findAll()
             .stream()
@@ -87,7 +87,7 @@ public class FullTrashImagesService {
      */
     @Transactional(readOnly = true)
     public Optional<FullTrashImagesDTO> findOne(Long id) {
-        log.debug("Request to get FullTrashImages : {}", id);
+        log.debug("Request to get Report : {}", id);
         return fullTrashImagesRepository.findById(id).map(fullTrashImagesMapper::toDto);
     }
 
@@ -97,7 +97,7 @@ public class FullTrashImagesService {
      * @param id the id of the entity.
      */
     public void delete(Long id) {
-        log.debug("Request to delete FullTrashImages : {}", id);
+        log.debug("Request to delete Report : {}", id);
         fullTrashImagesRepository.deleteById(id);
     }
 }

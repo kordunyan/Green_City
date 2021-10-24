@@ -76,10 +76,10 @@ public class CSVService {
             aa.add(new TrashExportationReport(weigh, address, name, type));
         }
 
-        List<TrashExportationReportWithType> aaa = new ArrayList<>();
+        List<TrashExportationReportWithType> result = new ArrayList<>();
 
         aa.forEach(item -> {
-            TrashExportationReportWithType reportItem = aaa
+            TrashExportationReportWithType reportItem = result
                 .stream()
                 .filter(i -> i.getName().equals(item.getName()))
                 .findAny()
@@ -94,7 +94,9 @@ public class CSVService {
             if (ConvertationRate.MIXED.equals(convertationRate)) reportItem.setMixed(item.getWeight());
 
             if (ConvertationRate.PAPER.equals(convertationRate)) reportItem.setPaper(item.getWeight());
+
+            result.add(reportItem);
         });
-        return aaa;
+        return result;
     }
 }

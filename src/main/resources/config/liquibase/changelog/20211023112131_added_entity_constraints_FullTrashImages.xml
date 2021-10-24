@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
     <!--
-        Added the constraints for entity FullTrashImages.
+        Added the constraints for entity Report.
     -->
     <changeSet id="20211023112131-2" author="jhipster">
 

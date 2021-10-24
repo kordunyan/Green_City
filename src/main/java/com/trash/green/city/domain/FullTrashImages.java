@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * A FullTrashImages.
+ * A Report.
  */
 @Entity
 @Table(name = "full_trash_images")
@@ -89,7 +89,7 @@ public class FullTrashImages implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "FullTrashImages{" +
+        return "Report{" +
             "id=" + getId() +
             ", path='" + getPath() + "'" +
             "}";

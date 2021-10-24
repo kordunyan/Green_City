@@ -85,7 +85,7 @@ class FullTrashImagesResourceIT {
     @Transactional
     void createFullTrashImages() throws Exception {
         int databaseSizeBeforeCreate = fullTrashImagesRepository.findAll().size();
-        // Create the FullTrashImages
+        // Create the Report
         FullTrashImagesDTO fullTrashImagesDTO = fullTrashImagesMapper.toDto(fullTrashImages);
         restFullTrashImagesMockMvc
             .perform(
@@ -93,7 +93,7 @@ class FullTrashImagesResourceIT {
             )
             .andExpect(status().isCreated());
 
-        // Validate the FullTrashImages in the database
+        // Validate the Report in the database
         List<FullTrashImages> fullTrashImagesList = fullTrashImagesRepository.findAll();
         assertThat(fullTrashImagesList).hasSize(databaseSizeBeforeCreate + 1);
         FullTrashImages testFullTrashImages = fullTrashImagesList.get(fullTrashImagesList.size() - 1);
@@ -103,7 +103,7 @@ class FullTrashImagesResourceIT {
     @Test
     @Transactional
     void createFullTrashImagesWithExistingId() throws Exception {
-        // Create the FullTrashImages with an existing ID
+        // Create the Report with an existing ID
         fullTrashImages.setId(1L);
         FullTrashImagesDTO fullTrashImagesDTO = fullTrashImagesMapper.toDto(fullTrashImages);
 
@@ -116,7 +116,7 @@ class FullTrashImagesResourceIT {
             )
             .andExpect(status().isBadRequest());
 
-        // Validate the FullTrashImages in the database
+        // Validate the Report in the database
         List<FullTrashImages> fullTrashImagesList = fullTrashImagesRepository.findAll();
         assertThat(fullTrashImagesList).hasSize(databaseSizeBeforeCreate);
     }
@@ -181,7 +181,7 @@ class FullTrashImagesResourceIT {
             )
             .andExpect(status().isOk());
 
-        // Validate the FullTrashImages in the database
+        // Validate the Report in the database
         List<FullTrashImages> fullTrashImagesList = fullTrashImagesRepository.findAll();
         assertThat(fullTrashImagesList).hasSize(databaseSizeBeforeUpdate);
         FullTrashImages testFullTrashImages = fullTrashImagesList.get(fullTrashImagesList.size() - 1);
@@ -194,7 +194,7 @@ class FullTrashImagesResourceIT {
         int databaseSizeBeforeUpdate = fullTrashImagesRepository.findAll().size();
         fullTrashImages.setId(count.incrementAndGet());
 
-        // Create the FullTrashImages
+        // Create the Report
         FullTrashImagesDTO fullTrashImagesDTO = fullTrashImagesMapper.toDto(fullTrashImages);
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
@@ -206,7 +206,7 @@ class FullTrashImagesResourceIT {
             )
             .andExpect(status().isBadRequest());
 
-        // Validate the FullTrashImages in the database
+        // Validate the Report in the database
         List<FullTrashImages> fullTrashImagesList = fullTrashImagesRepository.findAll();
         assertThat(fullTrashImagesList).hasSize(databaseSizeBeforeUpdate);
     }
@@ -217,7 +217,7 @@ class FullTrashImagesResourceIT {
         int databaseSizeBeforeUpdate = fullTrashImagesRepository.findAll().size();
         fullTrashImages.setId(count.incrementAndGet());
 
-        // Create the FullTrashImages
+        // Create the Report
         FullTrashImagesDTO fullTrashImagesDTO = fullTrashImagesMapper.toDto(fullTrashImages);
 
         // If url ID doesn't match entity ID, it will throw BadRequestAlertException
@@ -229,7 +229,7 @@ class FullTrashImagesResourceIT {
             )
             .andExpect(status().isBadRequest());
 
-        // Validate the FullTrashImages in the database
+        // Validate the Report in the database
         List<FullTrashImages> fullTrashImagesList = fullTrashImagesRepository.findAll();
         assertThat(fullTrashImagesList).hasSize(databaseSizeBeforeUpdate);
     }
@@ -240,7 +240,7 @@ class FullTrashImagesResourceIT {
         int databaseSizeBeforeUpdate = fullTrashImagesRepository.findAll().size();
         fullTrashImages.setId(count.incrementAndGet());
 
-        // Create the FullTrashImages
+        // Create the Report
         FullTrashImagesDTO fullTrashImagesDTO = fullTrashImagesMapper.toDto(fullTrashImages);
 
         // If url ID doesn't match entity ID, it will throw BadRequestAlertException
@@ -250,7 +250,7 @@ class FullTrashImagesResourceIT {
             )
             .andExpect(status().isMethodNotAllowed());
 
-        // Validate the FullTrashImages in the database
+        // Validate the Report in the database
         List<FullTrashImages> fullTrashImagesList = fullTrashImagesRepository.findAll();
         assertThat(fullTrashImagesList).hasSize(databaseSizeBeforeUpdate);
     }
@@ -275,7 +275,7 @@ class FullTrashImagesResourceIT {
             )
             .andExpect(status().isOk());
 
-        // Validate the FullTrashImages in the database
+        // Validate the Report in the database
         List<FullTrashImages> fullTrashImagesList = fullTrashImagesRepository.findAll();
         assertThat(fullTrashImagesList).hasSize(databaseSizeBeforeUpdate);
         FullTrashImages testFullTrashImages = fullTrashImagesList.get(fullTrashImagesList.size() - 1);
@@ -304,7 +304,7 @@ class FullTrashImagesResourceIT {
             )
             .andExpect(status().isOk());
 
-        // Validate the FullTrashImages in the database
+        // Validate the Report in the database
         List<FullTrashImages> fullTrashImagesList = fullTrashImagesRepository.findAll();
         assertThat(fullTrashImagesList).hasSize(databaseSizeBeforeUpdate);
         FullTrashImages testFullTrashImages = fullTrashImagesList.get(fullTrashImagesList.size() - 1);
@@ -317,7 +317,7 @@ class FullTrashImagesResourceIT {
         int databaseSizeBeforeUpdate = fullTrashImagesRepository.findAll().size();
         fullTrashImages.setId(count.incrementAndGet());
 
-        // Create the FullTrashImages
+        // Create the Report
         FullTrashImagesDTO fullTrashImagesDTO = fullTrashImagesMapper.toDto(fullTrashImages);
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
@@ -329,7 +329,7 @@ class FullTrashImagesResourceIT {
             )
             .andExpect(status().isBadRequest());
 
-        // Validate the FullTrashImages in the database
+        // Validate the Report in the database
         List<FullTrashImages> fullTrashImagesList = fullTrashImagesRepository.findAll();
         assertThat(fullTrashImagesList).hasSize(databaseSizeBeforeUpdate);
     }
@@ -340,7 +340,7 @@ class FullTrashImagesResourceIT {
         int databaseSizeBeforeUpdate = fullTrashImagesRepository.findAll().size();
         fullTrashImages.setId(count.incrementAndGet());
 
-        // Create the FullTrashImages
+        // Create the Report
         FullTrashImagesDTO fullTrashImagesDTO = fullTrashImagesMapper.toDto(fullTrashImages);
 
         // If url ID doesn't match entity ID, it will throw BadRequestAlertException
@@ -352,7 +352,7 @@ class FullTrashImagesResourceIT {
             )
             .andExpect(status().isBadRequest());
 
-        // Validate the FullTrashImages in the database
+        // Validate the Report in the database
         List<FullTrashImages> fullTrashImagesList = fullTrashImagesRepository.findAll();
         assertThat(fullTrashImagesList).hasSize(databaseSizeBeforeUpdate);
     }
@@ -363,7 +363,7 @@ class FullTrashImagesResourceIT {
         int databaseSizeBeforeUpdate = fullTrashImagesRepository.findAll().size();
         fullTrashImages.setId(count.incrementAndGet());
 
-        // Create the FullTrashImages
+        // Create the Report
         FullTrashImagesDTO fullTrashImagesDTO = fullTrashImagesMapper.toDto(fullTrashImages);
 
         // If url ID doesn't match entity ID, it will throw BadRequestAlertException
@@ -375,7 +375,7 @@ class FullTrashImagesResourceIT {
             )
             .andExpect(status().isMethodNotAllowed());
 
-        // Validate the FullTrashImages in the database
+        // Validate the Report in the database
         List<FullTrashImages> fullTrashImagesList = fullTrashImagesRepository.findAll();
         assertThat(fullTrashImagesList).hasSize(databaseSizeBeforeUpdate);
     }

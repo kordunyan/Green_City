@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
-import { Descriptions, Spin, Space, Table, Image } from 'antd';
+import {Descriptions, Spin, Space, Table, Image, Button} from 'antd';
 import moment from 'moment';
+import { MailOutlined } from '@ant-design/icons';
 import CompanySelector from '../../components/CompanySelector';
 import {getCompanyHistory, getCompanyInfo} from '../../api/trash';
 
@@ -48,6 +49,11 @@ const CompanyHistory = () => {
             <Descriptions.Item label='Адрес'>{companyInfo.address}</Descriptions.Item>
             <Descriptions.Item label='Експедитор'>{companyInfo.trashCompany}</Descriptions.Item>
           </Descriptions>
+          <a href='mailto:kordunyanolexandr@gmail.com'>
+            <Button>
+              <MailOutlined />
+            </Button>
+          </a>
         </Space>
       )}
       {!trashExportationsLoading && companyInfoLoading  && (

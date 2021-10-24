@@ -24,6 +24,7 @@ public interface TrashExportationRepository extends JpaRepository<TrashExportati
         nativeQuery = true,
         value = "SELECT SUM(t.weight) as weight,  o.name as name, o.address as address, t.trash_type as trash_type  FROM trash_exportation t " +
         "JOIN osbb o ON o.id = t.osbb_id " +
+        "WHERE t.is_wash = false " +
         "GROUP BY o.name, o.address , t.trash_type"
     )
     @SuppressWarnings("unchecked")

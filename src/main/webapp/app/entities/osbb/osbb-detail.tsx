@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
-import {} from 'react-jhipster';
+import QRCode from 'react-qr-code';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { getEntity } from './osbb.reducer';
@@ -16,6 +16,7 @@ export const OsbbDetail = (props: RouteComponentProps<{ id: string }>) => {
   }, []);
 
   const osbbEntity = useAppSelector(state => state.osbb.entity);
+
   return (
     <Row>
       <Col md="8">
@@ -47,6 +48,9 @@ export const OsbbDetail = (props: RouteComponentProps<{ id: string }>) => {
         <Button tag={Link} to={`/osbb/${osbbEntity.id}/edit`} replace color="primary">
           <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
         </Button>
+      </Col>
+      <Col md={4}>
+        <div className="mt-5">{osbbEntity.id && <QRCode value={osbbEntity.id?.toString()} />}</div>
       </Col>
     </Row>
   );

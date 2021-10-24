@@ -5,6 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import CompanyHistory from './components/CompanyHistory';
+import Reports from './components/Reports';
 
 import './App.css';
 
@@ -18,6 +19,9 @@ const App = () => {
                 </Route>
                 <Route path='/resident'>
                   <CompanyHistory />
+                </Route>
+                <Route path='/report'>
+                  <Reports />
                 </Route>
               </Switch>
             </Router>

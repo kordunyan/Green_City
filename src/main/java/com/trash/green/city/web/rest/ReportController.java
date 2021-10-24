@@ -23,7 +23,7 @@ public class ReportController {
     @Autowired
     private CSVService csvService;
 
-    @GetMapping("/export-by-osbb-csv/")
+    @GetMapping("/export-by-osbb-csv")
     public void exportCSV(HttpServletResponse response) throws Exception {
         String filename = "report.csv";
         response.setContentType("text/csv");
@@ -41,7 +41,7 @@ public class ReportController {
         writer.write(csvService.findAllGroupedByOsbbId());
     }
 
-    @GetMapping("/export-by-all-osbb/")
+    @GetMapping("/api/export-by-all-osbb")
     public void exportCSV(HttpServletResponse response, @RequestParam String lessThan, @RequestParam String greaterThan) throws Exception {
         String filename = "report.csv";
         response.setContentType("text/csv");
@@ -56,12 +56,12 @@ public class ReportController {
         //   writer.write(csvService.findAllGroupedByOsbbId(lessThan, greaterThan));
     }
 
-    @GetMapping("/export-by-osbb/{id}")
+    @GetMapping("/api/export-by-osbb/{id}")
     public List<TrashExportationWithImagesDTO> get(@PathVariable Long id, @RequestParam String lessThan, @RequestParam String greaterThan) {
         return csvService.findAllByOsbb(lessThan, greaterThan, id);
     }
 
-    @GetMapping("/export-by-osbb/")
+    @GetMapping("/api/export-by-osbb")
     public List<TrashExportationReportWithType> exportCSV() throws Exception {
         return csvService.findAllGroupedByOsbbId();
     }

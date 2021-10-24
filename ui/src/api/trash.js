@@ -26,3 +26,5 @@ export const exportTrash = form => {
 export const getCompanyInfo = id => api.get(`/osbbs/${id}`);
 
 export const getCompanyHistory = id => api.get(`/trash-exportation-by-osbb/${id}`);
+
+export const getReport = () => api.get('/export-by-osbb');
